@@ -1,0 +1,76 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
+    <script type="text/javascript">
+        $(function() {
+            $('.date-picker').datepicker( {
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'MM yy',
+            onClose: function(dateText, inst) { 
+                $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+            }
+            });
+        });
+    </script>
+    <style>
+        .ui-datepicker-calendar {
+            display: none;
+        }
+
+        .pure-button-active {
+            background-color: #AAAAAA;
+        }
+
+        body {
+            zoom:130%; /* For Chrome, IE, default 100%*/
+            font-family: monospace;
+        }
+        .radio-toolbar input[type="radio"] {
+            display: none;
+        }
+
+        .radio-toolbar label {
+            display: inline-block;
+            background-color: #ddd;
+            padding: 4px 11px;
+            font-size: 16px;
+            border: .1em solid #444;
+            cursor: pointer;
+        }
+
+        .radio-toolbar input[type="radio"]:checked+label {
+            background-color: #bbb;
+        } 
+    </style>
+  </head>
+  <body>
+        <div class="pure-menu pure-menu-horizontal">
+                <a href="/" class="pure-menu-heading pure-menu-link">Home</a>
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item"><a href="/categories" class="pure-menu-link">Categories</a></li>
+                    <!-- <li class="pure-menu-item"><a href="/about" class="pure-menu-link">About</a></li> -->
+                </ul>
+            </div>
+            <div>
+      {% block body %}
+      {% endblock %}
+            </div>
+      <footer class="footer">
+        <p>© 2019 Mohammad Haveliwala</p>
+      </footer>
+    </div> <!-- /container -->
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!-- index.html-->
+
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+<meta id="text" data-name="{{text}}">
+<div class="jumbotron">
+  <h1>Jeopardy Search!</h1>
+  <p class="lead">Search for Jeopardy-style questions!</p>
+</div>
+<div>
+    <form class='pure-form' method="POST" autocomplete='off'>
+        <!-- <div>
+        <label for="startDate">Start Date :</label>
+        <input name="startDate" id="startDate" class="date-picker" />
+        <label for="endDate">End Date :</label>
+        <input name="endDate" id="endDate" class="date-picker" />
+        <button type="submit" class="pure-button">Filter Dates</button>
+        </div> -->
+        <label for='value_btns'>What difficulty would you like to view?</label>
+        <div class="radio-toolbar">
+                <input type="radio" id="any" name="value" value="any" onclick="this.form.submit();" {{ 'checked' if text =='any'}} >
+                <label for="any">Any</label>
+              
+                <input type="radio" id="100" name="value" value="100" onclick="this.form.submit();" {{ 'checked' if text =='100'}} >
+                <label for="100">$100</label>
+
+                <input type="radio" id="200" name="value" value="200" onclick="this.form.submit();" {{ 'checked' if text =='200'}} >
+                <label for="200">$200</label>
+
+                <input type="radio" id="300" name="value" value="300" onclick="this.form.submit();" {{ 'checked' if text =='300'}} >
+                <label for="300">$300</label>
+
+                <input type="radio" id="400" name="value" value="400" onclick="this.form.submit();" {{ 'checked' if text =='400'}} >
+                <label for="400">$400</label>
+
+                <input type="radio" id="500" name="value" value="500" onclick="this.form.submit();" {{ 'checked' if text =='500'}} >
+                <label for="500">$500</label>
+
+                <input type="radio" id="600" name="value" value="600" onclick="this.form.submit();" {{ 'checked' if text =='600'}} >
+                <label for="600">$600</label>
+
+                <input type="radio" id="800" name="value" value="800" onclick="this.form.submit();" {{ 'checked' if text =='800'}} >
+                <label for="800">$800</label>
+
+                <input type="radio" id="1000" name="value" value="1000" onclick="this.form.submit();" {{ 'checked' if text =='1000'}} >
+                <label for="1000">$1000</label>
+              </div>
+            <script>
+                $('input[type=radio]').on('change', function() {
+                    $(this).closest("form").submit();
+                });
+            </script>
+    </form>
+</div>
+<table class='pure-table pure-table-bordered'>
+    <thead>
+        <th>Value</th>
+        <th>Category</th>
+        <th>Question</th>
+        <th>Answer</th>
+        <!-- <th>Airdate</th> -->
+    </thead>
+    <tbody>
+        {% for i in range(0,20) %}
+        {% if data[i]['value'] != None %}
+        <tr>
+        <td>${{ data[i]['value'] }}</td>
+        <td><a href="\categoryclues\{{ data[i]['category']['id'] }}">{{ data[i]['category']['title'].title() }}</a></td>
+        <td>{{ data[i]['question'] }}</td>
+        <td>{{ data[i]['answer'].title() | safe }}</td>
+        <!-- <td>{{ data[i]['airdate'].split('T')[0] }}</td> -->
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

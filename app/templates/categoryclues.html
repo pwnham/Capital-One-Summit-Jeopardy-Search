@@ -1,0 +1,32 @@
+<!-- index.html-->
+
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+<div class="jumbotron">
+  <h1>{{ name }}</h1>
+  <p class="lead">Here are some questions for this category.</p>
+</div>
+<table class='pure-table pure-table-bordered'>
+    <thead>
+        <th>Value</th>
+        <th>Category</th>
+        <th>Question</th>
+        <th>Answer</th>
+        <!-- <th>ID</th> -->
+    </thead>
+    <tbody>
+        {% for question in data %}
+        {% if question['value'] != None %}
+        <tr>
+        <td>${{ question['value'] }}</td>
+        <td>{{ question['category']['title'].title() }}</td>
+        <td>{{ question['question'] }}</td>
+        <td>{{ question['answer'].title() | safe }}</td>
+        <!-- <td>{{ question['id'] }}</td> -->
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

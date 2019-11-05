@@ -1,0 +1,33 @@
+<!-- categories.html-->
+
+{% extends "base.html" %}
+{% block title %}Categories{% endblock %}
+{% block body %}
+<div class="jumbotron">
+  <h1>Browse by Category</h1>
+  <p class="lead">Below are some popular categories</p>
+</div>
+<!-- <div>
+    <form method="POST">
+        <input name="text">
+        <input type="submit">
+    </form>
+</div> -->
+<table class='pure-table pure-table-bordered'>
+    <thead>
+        <th>Category</th>
+        <th>Clues</th>
+    </thead>
+    <tbody>
+        {% for category in data %}
+        <tr>
+        <td><a href="\categoryclues\{{ category['id'] }}">{{ category['title'].title() }}</a></td>
+        <td>{{ category['clues_count'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<form action="" method="post">
+        <button class='pure-button pure-button-primary' name='next' type='submit' value= {{ offset }}>Next</button>
+    </form>
+{% endblock %}
